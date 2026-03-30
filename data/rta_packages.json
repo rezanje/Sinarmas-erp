@@ -1,0 +1,843 @@
+[
+  {
+    "id": "PKG-001",
+    "packageId": "PKG-2026-0001",
+    "title": "Paket Perkerasan Jalan Seksi 1A - STA 0+000 s/d 2+500",
+    "description": "Dokumen desain perkerasan kaku dan lentur segmen awal seksi 1A termasuk detail transisi dan cross section.",
+    "section": "1A",
+    "discipline": "highway",
+    "status": "constructability_review",
+    "currentVersion": "v2.0",
+    "submittedBy": "USR-006",
+    "submittedAt": "2026-03-08T10:00:00Z",
+    "updatedAt": "2026-03-25T14:30:00Z",
+    "isFrozen": false,
+    "documents": [
+      {
+        "id": "DOC-001",
+        "name": "DWG-HWY-001_Typical Cross Section.pdf",
+        "type": "drawing",
+        "version": "v2.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-20T10:00:00Z",
+        "fileSize": "12.4 MB"
+      },
+      {
+        "id": "DOC-002",
+        "name": "DWG-HWY-002_Pavement Structure.pdf",
+        "type": "drawing",
+        "version": "v2.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-20T10:05:00Z",
+        "fileSize": "8.7 MB"
+      },
+      {
+        "id": "DOC-003",
+        "name": "BOQ-HWY-001_Volume Perkerasan.xlsx",
+        "type": "boq",
+        "version": "v2.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-20T10:10:00Z",
+        "fileSize": "2.1 MB"
+      }
+    ],
+    "workflowStages": [
+      {
+        "id": "WS-001",
+        "stage": "submitted",
+        "label": "Submission",
+        "order": 1,
+        "assignedRole": "consultant",
+        "slaHours": 0,
+        "status": "completed",
+        "startedAt": "2026-03-10T01:00:00.000Z",
+        "completedAt": "2026-03-11T01:00:00.000Z"
+      },
+      {
+        "id": "WS-002",
+        "stage": "completeness_check",
+        "label": "Completeness Check",
+        "order": 2,
+        "assignedRole": "td_pic",
+        "slaHours": 16,
+        "status": "completed",
+        "startedAt": "2026-03-12T01:00:00.000Z",
+        "completedAt": "2026-03-13T01:00:00.000Z"
+      },
+      {
+        "id": "WS-003",
+        "stage": "technical_review",
+        "label": "Technical Review (T&D)",
+        "order": 3,
+        "assignedRole": "td_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-14T01:00:00.000Z",
+        "completedAt": "2026-03-15T01:00:00.000Z"
+      },
+      {
+        "id": "WS-004",
+        "stage": "constructability_review",
+        "label": "Constructability Review",
+        "order": 4,
+        "assignedRole": "construction_pic",
+        "slaHours": 24,
+        "status": "active",
+        "startedAt": "2026-03-30T11:51:37.704Z"
+      },
+      {
+        "id": "WS-005",
+        "stage": "qs_review",
+        "label": "QS Review",
+        "order": 5,
+        "assignedRole": "qs_pic",
+        "slaHours": 24,
+        "status": "pending"
+      },
+      {
+        "id": "WS-006",
+        "stage": "consolidation",
+        "label": "Consolidation",
+        "order": 6,
+        "assignedRole": "td_pic",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-007",
+        "stage": "final_approval",
+        "label": "Final Approval",
+        "order": 7,
+        "assignedRole": "dept_head",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-008",
+        "stage": "published",
+        "label": "Publish & Distribute",
+        "order": 8,
+        "assignedRole": "coordinator",
+        "slaHours": 4,
+        "status": "pending"
+      }
+    ],
+    "comments": [
+      {
+        "id": "CMT-001",
+        "packageId": "PKG-001",
+        "documentId": "DOC-001",
+        "author": "USR-002",
+        "authorName": "Budi Santoso, ST",
+        "authorRole": "td_pic",
+        "content": "Detail tie-in di STA 1+200 belum jelas, perlu diperjelas batas perkerasan lama dan baru.",
+        "status": "closed",
+        "discipline": "highway",
+        "resolvedBy": "USR-006",
+        "resolvedAt": "2026-03-18T09:00:00Z",
+        "closedBy": "USR-002",
+        "closedAt": "2026-03-19T11:00:00Z",
+        "createdAt": "2026-03-15T14:00:00Z",
+        "replies": [
+          {
+            "id": "RPL-001",
+            "author": "USR-006",
+            "authorName": "PT Konsultan Raya",
+            "authorRole": "consultant",
+            "content": "Sudah diperbaiki di v2.0, detail tie-in lengkap di sheet 3.",
+            "createdAt": "2026-03-18T09:00:00Z"
+          }
+        ]
+      },
+      {
+        "id": "CMT-002",
+        "packageId": "PKG-001",
+        "documentId": "DOC-003",
+        "author": "USR-002",
+        "authorName": "Budi Santoso, ST",
+        "authorRole": "td_pic",
+        "content": "Volume base course di BoQ tidak konsisten dengan gambar cross section. Mohon dicek ulang kalkulasi.",
+        "status": "resolved",
+        "discipline": "highway",
+        "resolvedBy": "USR-006",
+        "resolvedAt": "2026-03-22T16:00:00Z",
+        "createdAt": "2026-03-16T10:00:00Z",
+        "replies": [
+          {
+            "id": "RPL-002",
+            "author": "USR-006",
+            "authorName": "PT Konsultan Raya",
+            "authorRole": "consultant",
+            "content": "Volume sudah direvisi sesuai cross section terbaru. Selisih 450 m³ sudah dikoreksi.",
+            "createdAt": "2026-03-22T16:00:00Z"
+          }
+        ]
+      },
+      {
+        "id": "CMT-003",
+        "packageId": "PKG-001",
+        "author": "USR-004",
+        "authorName": "Heri Gunawan, ST",
+        "authorRole": "construction_pic",
+        "content": "Perlu detail akses alat paver di area STA 0+800 - 1+000 karena sempitnya ROW di area tersebut.",
+        "status": "open",
+        "discipline": "method",
+        "createdAt": "2026-03-25T14:30:00Z",
+        "replies": []
+      }
+    ],
+    "checklistResponses": []
+  },
+  {
+    "id": "PKG-002",
+    "packageId": "PKG-2026-0002",
+    "title": "Paket Sistem Drainase Seksi 1B - STA 2+500 s/d 5+000",
+    "description": "Desain sistem drainase melintang dan memanjang termasuk detail saluran, inlet/outlet, dan konsep dewatering.",
+    "section": "1B",
+    "discipline": "drainage",
+    "status": "qs_review",
+    "currentVersion": "v1.0",
+    "submittedBy": "USR-006",
+    "submittedAt": "2026-03-05T09:00:00Z",
+    "updatedAt": "2026-03-24T16:00:00Z",
+    "isFrozen": false,
+    "documents": [
+      {
+        "id": "DOC-004",
+        "name": "DWG-DRN-001_Drainage Layout Plan.pdf",
+        "type": "drawing",
+        "version": "v1.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-05T09:00:00Z",
+        "fileSize": "15.2 MB"
+      },
+      {
+        "id": "DOC-005",
+        "name": "DWG-DRN-002_Typical Channel Section.pdf",
+        "type": "drawing",
+        "version": "v1.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-05T09:10:00Z",
+        "fileSize": "6.8 MB"
+      }
+    ],
+    "workflowStages": [
+      {
+        "id": "WS-001",
+        "stage": "submitted",
+        "label": "Submission",
+        "order": 1,
+        "assignedRole": "consultant",
+        "slaHours": 0,
+        "status": "completed",
+        "startedAt": "2026-03-10T01:00:00.000Z",
+        "completedAt": "2026-03-11T01:00:00.000Z"
+      },
+      {
+        "id": "WS-002",
+        "stage": "completeness_check",
+        "label": "Completeness Check",
+        "order": 2,
+        "assignedRole": "td_pic",
+        "slaHours": 16,
+        "status": "completed",
+        "startedAt": "2026-03-12T01:00:00.000Z",
+        "completedAt": "2026-03-13T01:00:00.000Z"
+      },
+      {
+        "id": "WS-003",
+        "stage": "technical_review",
+        "label": "Technical Review (T&D)",
+        "order": 3,
+        "assignedRole": "td_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-14T01:00:00.000Z",
+        "completedAt": "2026-03-15T01:00:00.000Z"
+      },
+      {
+        "id": "WS-004",
+        "stage": "constructability_review",
+        "label": "Constructability Review",
+        "order": 4,
+        "assignedRole": "construction_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-16T01:00:00.000Z",
+        "completedAt": "2026-03-17T01:00:00.000Z"
+      },
+      {
+        "id": "WS-005",
+        "stage": "qs_review",
+        "label": "QS Review",
+        "order": 5,
+        "assignedRole": "qs_pic",
+        "slaHours": 24,
+        "status": "active",
+        "startedAt": "2026-03-30T11:51:37.704Z"
+      },
+      {
+        "id": "WS-006",
+        "stage": "consolidation",
+        "label": "Consolidation",
+        "order": 6,
+        "assignedRole": "td_pic",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-007",
+        "stage": "final_approval",
+        "label": "Final Approval",
+        "order": 7,
+        "assignedRole": "dept_head",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-008",
+        "stage": "published",
+        "label": "Publish & Distribute",
+        "order": 8,
+        "assignedRole": "coordinator",
+        "slaHours": 4,
+        "status": "pending"
+      }
+    ],
+    "comments": [
+      {
+        "id": "CMT-004",
+        "packageId": "PKG-002",
+        "documentId": "DOC-004",
+        "author": "USR-002",
+        "authorName": "Budi Santoso, ST",
+        "authorRole": "td_pic",
+        "content": "Konektivitas outlet di STA 3+200 perlu ditinjau ulang, terdapat potensi backflow saat hujan deras.",
+        "status": "closed",
+        "discipline": "drainage",
+        "resolvedBy": "USR-006",
+        "resolvedAt": "2026-03-12T10:00:00Z",
+        "closedBy": "USR-002",
+        "closedAt": "2026-03-13T08:00:00Z",
+        "createdAt": "2026-03-10T11:00:00Z",
+        "replies": []
+      },
+      {
+        "id": "CMT-005",
+        "packageId": "PKG-002",
+        "author": "USR-003",
+        "authorName": "Mizan Pratama, ST",
+        "authorRole": "qs_pic",
+        "content": "Harga satuan grating di AHS perlu di-update sesuai survey harga terbaru. Selisih ~15% dari harga pasar.",
+        "status": "open",
+        "discipline": "drainage",
+        "createdAt": "2026-03-24T16:00:00Z",
+        "replies": []
+      }
+    ],
+    "checklistResponses": []
+  },
+  {
+    "id": "PKG-003",
+    "packageId": "PKG-2026-0003",
+    "title": "Paket Struktur Jembatan Overpass Seksi 2A - STA 7+500",
+    "description": "Desain struktur jembatan overpass termasuk pondasi, abutment, pier, dan superstruktur.",
+    "section": "2A",
+    "discipline": "structure",
+    "status": "technical_review",
+    "currentVersion": "v1.0",
+    "submittedBy": "USR-006",
+    "submittedAt": "2026-03-18T08:00:00Z",
+    "updatedAt": "2026-03-23T10:00:00Z",
+    "isFrozen": false,
+    "documents": [
+      {
+        "id": "DOC-006",
+        "name": "DWG-STR-001_Bridge General Arrangement.pdf",
+        "type": "drawing",
+        "version": "v1.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-18T08:00:00Z",
+        "fileSize": "22.1 MB"
+      },
+      {
+        "id": "DOC-007",
+        "name": "CALC-STR-001_Structural Analysis.pdf",
+        "type": "specification",
+        "version": "v1.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-18T08:15:00Z",
+        "fileSize": "5.4 MB"
+      }
+    ],
+    "workflowStages": [
+      {
+        "id": "WS-001",
+        "stage": "submitted",
+        "label": "Submission",
+        "order": 1,
+        "assignedRole": "consultant",
+        "slaHours": 0,
+        "status": "completed",
+        "startedAt": "2026-03-10T01:00:00.000Z",
+        "completedAt": "2026-03-11T01:00:00.000Z"
+      },
+      {
+        "id": "WS-002",
+        "stage": "completeness_check",
+        "label": "Completeness Check",
+        "order": 2,
+        "assignedRole": "td_pic",
+        "slaHours": 16,
+        "status": "completed",
+        "startedAt": "2026-03-12T01:00:00.000Z",
+        "completedAt": "2026-03-13T01:00:00.000Z"
+      },
+      {
+        "id": "WS-003",
+        "stage": "technical_review",
+        "label": "Technical Review (T&D)",
+        "order": 3,
+        "assignedRole": "td_pic",
+        "slaHours": 24,
+        "status": "active",
+        "startedAt": "2026-03-30T11:51:37.704Z"
+      },
+      {
+        "id": "WS-004",
+        "stage": "constructability_review",
+        "label": "Constructability Review",
+        "order": 4,
+        "assignedRole": "construction_pic",
+        "slaHours": 24,
+        "status": "pending"
+      },
+      {
+        "id": "WS-005",
+        "stage": "qs_review",
+        "label": "QS Review",
+        "order": 5,
+        "assignedRole": "qs_pic",
+        "slaHours": 24,
+        "status": "pending"
+      },
+      {
+        "id": "WS-006",
+        "stage": "consolidation",
+        "label": "Consolidation",
+        "order": 6,
+        "assignedRole": "td_pic",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-007",
+        "stage": "final_approval",
+        "label": "Final Approval",
+        "order": 7,
+        "assignedRole": "dept_head",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-008",
+        "stage": "published",
+        "label": "Publish & Distribute",
+        "order": 8,
+        "assignedRole": "coordinator",
+        "slaHours": 4,
+        "status": "pending"
+      }
+    ],
+    "comments": [
+      {
+        "id": "CMT-006",
+        "packageId": "PKG-003",
+        "author": "USR-002",
+        "authorName": "Budi Santoso, ST",
+        "authorRole": "td_pic",
+        "content": "Detail wingwall dan headwall belum termasuk dalam gambar. Perlu dilengkapi sebelum lanjut ke review konstruksi.",
+        "status": "open",
+        "discipline": "structure",
+        "createdAt": "2026-03-23T10:00:00Z",
+        "replies": []
+      }
+    ],
+    "checklistResponses": []
+  },
+  {
+    "id": "PKG-004",
+    "packageId": "PKG-2026-0004",
+    "title": "Paket Perbaikan Tanah Dasar Seksi 1A - STA 0+500 s/d 1+800",
+    "description": "Desain perkuatan tanah dasar menggunakan PVD dan preloading pada area tanah lunak.",
+    "section": "1A",
+    "discipline": "geotechnical",
+    "status": "published",
+    "currentVersion": "v3.0",
+    "submittedBy": "USR-006",
+    "submittedAt": "2026-02-15T08:00:00Z",
+    "updatedAt": "2026-03-20T16:00:00Z",
+    "isFrozen": true,
+    "documents": [
+      {
+        "id": "DOC-008",
+        "name": "DWG-GEO-001_Soil Treatment Zoning.pdf",
+        "type": "drawing",
+        "version": "v3.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-15T08:00:00Z",
+        "fileSize": "18.5 MB"
+      }
+    ],
+    "workflowStages": [
+      {
+        "id": "WS-001",
+        "stage": "submitted",
+        "label": "Submission",
+        "order": 1,
+        "assignedRole": "consultant",
+        "slaHours": 0,
+        "status": "completed",
+        "startedAt": "2026-03-10T01:00:00.000Z",
+        "completedAt": "2026-03-11T01:00:00.000Z"
+      },
+      {
+        "id": "WS-002",
+        "stage": "completeness_check",
+        "label": "Completeness Check",
+        "order": 2,
+        "assignedRole": "td_pic",
+        "slaHours": 16,
+        "status": "completed",
+        "startedAt": "2026-03-12T01:00:00.000Z",
+        "completedAt": "2026-03-13T01:00:00.000Z"
+      },
+      {
+        "id": "WS-003",
+        "stage": "technical_review",
+        "label": "Technical Review (T&D)",
+        "order": 3,
+        "assignedRole": "td_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-14T01:00:00.000Z",
+        "completedAt": "2026-03-15T01:00:00.000Z"
+      },
+      {
+        "id": "WS-004",
+        "stage": "constructability_review",
+        "label": "Constructability Review",
+        "order": 4,
+        "assignedRole": "construction_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-16T01:00:00.000Z",
+        "completedAt": "2026-03-17T01:00:00.000Z"
+      },
+      {
+        "id": "WS-005",
+        "stage": "qs_review",
+        "label": "QS Review",
+        "order": 5,
+        "assignedRole": "qs_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-18T01:00:00.000Z",
+        "completedAt": "2026-03-19T01:00:00.000Z"
+      },
+      {
+        "id": "WS-006",
+        "stage": "consolidation",
+        "label": "Consolidation",
+        "order": 6,
+        "assignedRole": "td_pic",
+        "slaHours": 8,
+        "status": "completed",
+        "startedAt": "2026-03-20T01:00:00.000Z",
+        "completedAt": "2026-03-21T01:00:00.000Z"
+      },
+      {
+        "id": "WS-007",
+        "stage": "final_approval",
+        "label": "Final Approval",
+        "order": 7,
+        "assignedRole": "dept_head",
+        "slaHours": 8,
+        "status": "completed",
+        "startedAt": "2026-03-22T01:00:00.000Z",
+        "completedAt": "2026-03-23T01:00:00.000Z"
+      },
+      {
+        "id": "WS-008",
+        "stage": "published",
+        "label": "Publish & Distribute",
+        "order": 8,
+        "assignedRole": "coordinator",
+        "slaHours": 4,
+        "status": "active",
+        "startedAt": "2026-03-30T11:51:37.704Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": "CMT-007",
+        "packageId": "PKG-004",
+        "author": "USR-004",
+        "authorName": "Heri Gunawan, ST",
+        "authorRole": "construction_pic",
+        "content": "Urutan PVD installation sudah jelas. Akses alat crane crawler feasible dari akses utara.",
+        "status": "closed",
+        "discipline": "method",
+        "resolvedBy": "USR-006",
+        "resolvedAt": "2026-03-05T10:00:00Z",
+        "closedBy": "USR-004",
+        "closedAt": "2026-03-06T09:00:00Z",
+        "createdAt": "2026-03-02T14:00:00Z",
+        "replies": []
+      }
+    ],
+    "checklistResponses": []
+  },
+  {
+    "id": "PKG-005",
+    "packageId": "PKG-2026-0005",
+    "title": "Paket Perkerasan Lentur Seksi 2A - STA 5+000 s/d 8+000",
+    "description": "Desain perkerasan lentur (flexible pavement) dengan overlay pada segmen Seksi 2A.",
+    "section": "2A",
+    "discipline": "highway",
+    "status": "submitted",
+    "currentVersion": "v1.0",
+    "submittedBy": "USR-006",
+    "submittedAt": "2026-03-26T10:00:00Z",
+    "updatedAt": "2026-03-26T10:00:00Z",
+    "isFrozen": false,
+    "documents": [
+      {
+        "id": "DOC-009",
+        "name": "DWG-HWY-003_Flexible Pavement Design.pdf",
+        "type": "drawing",
+        "version": "v1.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-26T10:00:00Z",
+        "fileSize": "14.3 MB"
+      },
+      {
+        "id": "DOC-010",
+        "name": "BOQ-HWY-002_Volume Perkerasan Lentur.xlsx",
+        "type": "boq",
+        "version": "v1.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-26T10:05:00Z",
+        "fileSize": "1.8 MB"
+      }
+    ],
+    "workflowStages": [
+      {
+        "id": "WS-001",
+        "stage": "submitted",
+        "label": "Submission",
+        "order": 1,
+        "assignedRole": "consultant",
+        "slaHours": 0,
+        "status": "active",
+        "startedAt": "2026-03-30T11:51:37.704Z"
+      },
+      {
+        "id": "WS-002",
+        "stage": "completeness_check",
+        "label": "Completeness Check",
+        "order": 2,
+        "assignedRole": "td_pic",
+        "slaHours": 16,
+        "status": "pending"
+      },
+      {
+        "id": "WS-003",
+        "stage": "technical_review",
+        "label": "Technical Review (T&D)",
+        "order": 3,
+        "assignedRole": "td_pic",
+        "slaHours": 24,
+        "status": "pending"
+      },
+      {
+        "id": "WS-004",
+        "stage": "constructability_review",
+        "label": "Constructability Review",
+        "order": 4,
+        "assignedRole": "construction_pic",
+        "slaHours": 24,
+        "status": "pending"
+      },
+      {
+        "id": "WS-005",
+        "stage": "qs_review",
+        "label": "QS Review",
+        "order": 5,
+        "assignedRole": "qs_pic",
+        "slaHours": 24,
+        "status": "pending"
+      },
+      {
+        "id": "WS-006",
+        "stage": "consolidation",
+        "label": "Consolidation",
+        "order": 6,
+        "assignedRole": "td_pic",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-007",
+        "stage": "final_approval",
+        "label": "Final Approval",
+        "order": 7,
+        "assignedRole": "dept_head",
+        "slaHours": 8,
+        "status": "pending"
+      },
+      {
+        "id": "WS-008",
+        "stage": "published",
+        "label": "Publish & Distribute",
+        "order": 8,
+        "assignedRole": "coordinator",
+        "slaHours": 4,
+        "status": "pending"
+      }
+    ],
+    "comments": [],
+    "checklistResponses": []
+  },
+  {
+    "id": "PKG-006",
+    "packageId": "PKG-2026-0006",
+    "title": "Paket Box Culvert Seksi 1B - STA 3+100 dan 4+200",
+    "description": "Desain box culvert ganda dan tunggal pada dua titik perlintasan air utama.",
+    "section": "1B",
+    "discipline": "structure",
+    "status": "final_approval",
+    "currentVersion": "v2.0",
+    "submittedBy": "USR-006",
+    "submittedAt": "2026-03-01T08:00:00Z",
+    "updatedAt": "2026-03-26T09:00:00Z",
+    "isFrozen": false,
+    "documents": [
+      {
+        "id": "DOC-011",
+        "name": "DWG-STR-002_Box Culvert Detail.pdf",
+        "type": "drawing",
+        "version": "v2.0",
+        "uploadedBy": "USR-006",
+        "uploadedAt": "2026-03-20T08:00:00Z",
+        "fileSize": "9.8 MB"
+      }
+    ],
+    "workflowStages": [
+      {
+        "id": "WS-001",
+        "stage": "submitted",
+        "label": "Submission",
+        "order": 1,
+        "assignedRole": "consultant",
+        "slaHours": 0,
+        "status": "completed",
+        "startedAt": "2026-03-10T01:00:00.000Z",
+        "completedAt": "2026-03-11T01:00:00.000Z"
+      },
+      {
+        "id": "WS-002",
+        "stage": "completeness_check",
+        "label": "Completeness Check",
+        "order": 2,
+        "assignedRole": "td_pic",
+        "slaHours": 16,
+        "status": "completed",
+        "startedAt": "2026-03-12T01:00:00.000Z",
+        "completedAt": "2026-03-13T01:00:00.000Z"
+      },
+      {
+        "id": "WS-003",
+        "stage": "technical_review",
+        "label": "Technical Review (T&D)",
+        "order": 3,
+        "assignedRole": "td_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-14T01:00:00.000Z",
+        "completedAt": "2026-03-15T01:00:00.000Z"
+      },
+      {
+        "id": "WS-004",
+        "stage": "constructability_review",
+        "label": "Constructability Review",
+        "order": 4,
+        "assignedRole": "construction_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-16T01:00:00.000Z",
+        "completedAt": "2026-03-17T01:00:00.000Z"
+      },
+      {
+        "id": "WS-005",
+        "stage": "qs_review",
+        "label": "QS Review",
+        "order": 5,
+        "assignedRole": "qs_pic",
+        "slaHours": 24,
+        "status": "completed",
+        "startedAt": "2026-03-18T01:00:00.000Z",
+        "completedAt": "2026-03-19T01:00:00.000Z"
+      },
+      {
+        "id": "WS-006",
+        "stage": "consolidation",
+        "label": "Consolidation",
+        "order": 6,
+        "assignedRole": "td_pic",
+        "slaHours": 8,
+        "status": "completed",
+        "startedAt": "2026-03-20T01:00:00.000Z",
+        "completedAt": "2026-03-21T01:00:00.000Z"
+      },
+      {
+        "id": "WS-007",
+        "stage": "final_approval",
+        "label": "Final Approval",
+        "order": 7,
+        "assignedRole": "dept_head",
+        "slaHours": 8,
+        "status": "active",
+        "startedAt": "2026-03-30T11:51:37.704Z"
+      },
+      {
+        "id": "WS-008",
+        "stage": "published",
+        "label": "Publish & Distribute",
+        "order": 8,
+        "assignedRole": "coordinator",
+        "slaHours": 4,
+        "status": "pending"
+      }
+    ],
+    "comments": [
+      {
+        "id": "CMT-008",
+        "packageId": "PKG-006",
+        "author": "USR-003",
+        "authorName": "Mizan Pratama, ST",
+        "authorRole": "qs_pic",
+        "content": "Volume beton dan besi tulangan sudah match dengan gambar detail. AHS konsisten.",
+        "status": "closed",
+        "discipline": "structure",
+        "resolvedBy": "USR-003",
+        "resolvedAt": "2026-03-22T10:00:00Z",
+        "closedBy": "USR-003",
+        "closedAt": "2026-03-22T10:00:00Z",
+        "createdAt": "2026-03-21T14:00:00Z",
+        "replies": []
+      }
+    ],
+    "checklistResponses": []
+  }
+]

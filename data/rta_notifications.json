@@ -1,0 +1,42 @@
+[
+  {
+    "userId": "USR-002",
+    "title": "Dokumen Baru Diupload",
+    "message": "Konsultan telah mengupload BA_Serah_Terima_PO-20260327-865.pdf untuk paket PKG-2026-0007",
+    "packageId": "pkg-1774610061912",
+    "type": "info",
+    "id": "NOT-1774612423178-jgjho",
+    "createdAt": "2026-03-27T11:53:43.178Z",
+    "isRead": false
+  },
+  {
+    "userId": "USR-002",
+    "title": "Dokumen Baru Diupload",
+    "message": "Konsultan telah mengupload B.1. Cross section_Section 2.pdf untuk paket PKG-2026-0007",
+    "packageId": "pkg-1774610061912",
+    "type": "info",
+    "id": "NOT-1774612185054-0m4pg",
+    "createdAt": "2026-03-27T11:49:45.054Z",
+    "isRead": false
+  },
+  {
+    "userId": "USR-002",
+    "title": "Dokumen Baru Diupload",
+    "message": "Konsultan telah mengupload B.1. Cross section_Section 2.pdf untuk paket PKG-2026-0007",
+    "packageId": "pkg-1774610061912",
+    "type": "info",
+    "id": "NOT-1774611795635-kggjt",
+    "createdAt": "2026-03-27T11:43:15.635Z",
+    "isRead": false
+  },
+  {
+    "userId": "USR-002",
+    "title": "Dokumen Baru Diupload",
+    "message": "Konsultan telah mengupload B.1. Cross section_Section 2.pdf untuk paket PKG-2026-0007",
+    "packageId": "pkg-1774610061912",
+    "type": "info",
+    "id": "NOT-1774611567159-93eql",
+    "createdAt": "2026-03-27T11:39:27.159Z",
+    "isRead": false
+  }
+]
