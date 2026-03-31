@@ -57,9 +57,9 @@ export default function LoginPage() {
         {/* Logo & Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Sinar_Mas_Land_Logo.png" 
-            alt="Sinar Mas Land Logo" 
-            style={{ height: 64, objectFit: "contain", margin: "0 auto 20px", display: "block" }} 
+            src="https://fkldviryyuiwvsrghdlv.supabase.co/storage/v1/object/public/logo/WhatsApp%20Image%202026-03-31%20at%2009.11.45.jpeg" 
+            alt="Sinarmas Land Logo" 
+            style={{ height: 80, objectFit: "contain", margin: "0 auto 20px", display: "block" }} 
           />
           <h1
             style={{
@@ -71,18 +71,18 @@ export default function LoginPage() {
           >
             <span className="gradient-text">Integrated RTA System</span>
           </h1>
-          <p style={{ color: "var(--text-secondary)", fontSize: 14 }}>
-            PT Trans Bumi Serbaraja — Sinarmas Land
-          </p>
-          <p
+          <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text-secondary)" }}>
+            Serbaraja Toll Road
+          </div>
+          <div
             style={{
               color: "var(--text-muted)",
               fontSize: 13,
               marginTop: 4,
             }}
           >
-            Single Source of Truth untuk Review Rencana Teknik Akhir
-          </p>
+            PT Trans Bumi Serbaraja — Sinarmas Land
+          </div>
         </div>
 
         {/* Role Selector */}
@@ -225,7 +225,7 @@ export default function LoginPage() {
             marginTop: 24,
           }}
         >
-          Demo Mode — Data disimpan di localStorage browser
+          Live Sync Mode — Data disinkronkan ke Supabase Cloud
         </p>
       </div>
 
