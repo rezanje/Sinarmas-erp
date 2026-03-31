@@ -6,6 +6,7 @@ import {
   getPackageById,
   getCurrentUser,
   advanceWorkflow,
+  rejectWorkflow,
   addComment,
   updateCommentStatus,
   addReply,
@@ -96,7 +97,23 @@ export default function PackageDetailPage() {
         userName: user.name,
         userRole: user.role,
         action: "stage_completed",
-        details: `Stage advanced: ${pkg.packageId} → ${STATUS_CONFIG[result.status].label}`,
+        details: `Stage Approved: ${pkg.packageId} dipindahkan ke ${STATUS_CONFIG[result.status].label}`,
+      });
+      reload();
+    }
+  };
+
+  const handleReject = () => {
+    if (!confirm("Apakah anda yakin ingin me-reject paket ini dan mengembalikannya ke Konsultan?")) return;
+    const result = rejectWorkflow(pkg.id);
+    if (result) {
+      addActivity({
+        packageId: pkg.id,
+        userId: user.id,
+        userName: user.name,
+        userRole: user.role,
+        action: "stage_rejected",
+        details: `Stage Rejected: ${pkg.packageId} dikembalikan ke Konsultan untuk revisi`,
       });
       reload();
     }
@@ -234,16 +251,26 @@ export default function PackageDetailPage() {
           </div>
 
           {/* Action buttons */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             {canAdvance && !pkg.isFrozen && (
-              <button className="btn btn-emerald" onClick={handleAdvance}>
-                <ArrowRight size={16} />
-                {pkg.status === "submitted" 
-                  ? "Submit RTA" 
-                  : pkg.status === "final_approval"
-                  ? "Approve & Freeze"
-                  : "Advance Stage"}
-              </button>
+              <>
+                <button 
+                  className="btn btn-rose" 
+                  onClick={handleReject}
+                  style={{ background: "rgba(225, 29, 72, 0.1)", color: "var(--accent-rose)", border: "1px solid rgba(225, 29, 72, 0.2)" }}
+                >
+                  <XCircle size={16} />
+                  Reject (Balik ke Konsultan)
+                </button>
+                <button className="btn btn-emerald" onClick={handleAdvance}>
+                  <CheckCircle2 size={16} />
+                  {pkg.status === "submitted" 
+                    ? "Submit RTA" 
+                    : pkg.status === "final_approval"
+                    ? "Approve & Freeze"
+                    : "Approve Stage"}
+                </button>
+              </>
             )}
             {pkg.status === "consolidation" && openComments > 0 && (
               <div
@@ -1299,7 +1326,7 @@ function DocumentsTab({
     excel: "📈",
   };
 
-  const canUpload = user.role === "consultant" || user.role === "td_pic";
+  const canUpload = !pkg.isFrozen; // Semua akun bisa upload dokumen referensi
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

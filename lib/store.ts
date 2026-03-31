@@ -36,38 +36,38 @@ const STORAGE_KEYS = {
 export const DEMO_USERS: User[] = [
   {
     id: 'USR-001',
-    name: 'Ir. Ahmad Wijaya',
-    email: 'ahmad@sinarmasland.com',
+    name: 'Ciptoko Maskur',
+    email: 'ciptoko@sinarmasland.com',
     role: 'dept_head',
-    department: 'T&D',
+    department: 'TD Dept Head',
   },
   {
     id: 'USR-002',
-    name: 'Budi Santoso, ST',
-    email: 'budi@sinarmasland.com',
+    name: 'M Iqbal Fanshury',
+    email: 'iqbal@sinarmasland.com',
     role: 'td_pic',
-    department: 'T&D',
+    department: 'PIC TD',
   },
   {
     id: 'USR-003',
-    name: 'Mizan Pratama, ST',
+    name: 'Mizan Qisthi',
     email: 'mizan@sinarmasland.com',
     role: 'qs_pic',
     department: 'QS & Cost Control',
   },
   {
     id: 'USR-004',
-    name: 'Heri Gunawan, ST',
+    name: 'Heri Prastiyo',
     email: 'heri@sinarmasland.com',
     role: 'construction_pic',
     department: 'Construction',
   },
   {
     id: 'USR-005',
-    name: 'Sari Dewi, MT',
-    email: 'sari@sinarmasland.com',
+    name: 'Ion Sutriputra',
+    email: 'ion@sinarmasland.com',
     role: 'coordinator',
-    department: 'PMO',
+    department: 'Project Coordinator',
   },
   {
     id: 'USR-006',
@@ -817,6 +817,44 @@ export function advanceWorkflow(packageId: string): RTAPackage | undefined {
       });
     });
   }
+
+  return updatedPkg;
+}
+
+export function rejectWorkflow(packageId: string): RTAPackage | undefined {
+  const packages = getPackages();
+  const pkg = packages.find((p) => p.id === packageId);
+  if (!pkg) return undefined;
+
+  // Move back to 'submitted' stage
+  const nextStatus: PackageStatus = 'submitted';
+
+  // Update stages
+  const stages = [...pkg.workflowStages];
+  // Reset all stages after 'submitted' to pending
+  stages.forEach((s, i) => {
+    if (i === 0) {
+      s.status = 'active';
+      s.startedAt = new Date().toISOString();
+      s.completedAt = undefined;
+    } else {
+      s.status = 'pending';
+      s.startedAt = undefined;
+      s.completedAt = undefined;
+    }
+  });
+
+  const updatedPkg = {
+    ...pkg,
+    status: nextStatus,
+    workflowStages: stages,
+    isFrozen: false,
+    updatedAt: new Date().toISOString(),
+  };
+
+  const index = packages.findIndex((p) => p.id === packageId);
+  packages[index] = updatedPkg;
+  setToStorage(STORAGE_KEYS.PACKAGES, packages);
 
   return updatedPkg;
 }

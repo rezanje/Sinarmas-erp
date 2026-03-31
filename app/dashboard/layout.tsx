@@ -114,22 +114,23 @@ export default function DashboardLayout({
           >
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Sinar_Mas_Land_Logo.png" 
-                alt="Sinar Mas Land"
-                style={{ height: 32, objectFit: "contain" }}
+                src="https://fkldviryyuiwvsrghdlv.supabase.co/storage/v1/object/public/logo/WhatsApp%20Image%202026-03-31%20at%2009.11.45.jpeg" 
+                alt="Sinarmas Land"
+                style={{ height: 36, objectFit: "contain", borderRadius: 4 }}
               />
               <div>
                 <div
                   style={{
-                    fontSize: 15,
-                    fontWeight: 700,
+                    fontSize: 14,
+                    fontWeight: 800,
                     letterSpacing: "-0.01em",
+                    lineHeight: 1.2,
                   }}
                 >
-                  RTA System
+                  Serbaraja Toll Road
                 </div>
-                <div style={{ fontSize: 11, color: "var(--text-muted)" }}>
-                  Trans Bumi Serbaraja
+                <div style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 500 }}>
+                  PT Trans Bumi Serbaraja
                 </div>
               </div>
             </div>
