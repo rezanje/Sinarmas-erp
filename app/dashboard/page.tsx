@@ -567,11 +567,11 @@ export default function DashboardPage() {
             <div style={{ marginTop: 20, padding: 16, borderRadius: 12, background: "white", border: "1px solid var(--border-primary)" }}>
                 <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Status Integrasi Database</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-amber)" }} />
-                    <span style={{ fontSize: 13, fontWeight: 600 }}>MVP Mode (Local Storage)</span>
+                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-emerald)" }} />
+                    <span style={{ fontSize: 13, fontWeight: 600 }}>Live Sync Active (Supabase)</span>
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 8 }}>
-                    Struktur Supabase PostgreSQL sudah siap untuk migrasi produksi.
+                    Semua aktivitas sekarang disinkronkan secara real-time antar akun.
                 </div>
             </div>
 

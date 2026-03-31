@@ -20,6 +20,7 @@ import {
   Notification,
 } from './types';
 import { CHECKLIST_TEMPLATES } from './checklists';
+import { supabase } from './supabase';
 
 const STORAGE_KEYS = {
   CURRENT_USER: 'rta_current_user',
@@ -628,27 +629,36 @@ function setToStorage<T>(key: string, value: T): void {
   }).catch(err => console.debug('Sync ignore:', err));
 }
 
-export async function syncFromDisk(): Promise<void> {
+// Initialize with Supabase data if available, otherwise use seed
+export async function initializeStore(): Promise<void> {
   if (!isBrowser()) return;
-  const keys = Object.values(STORAGE_KEYS);
-  for (const key of keys) {
-    try {
-      const res = await fetch(`/api/storage?key=${key}`);
-      const data = await res.json();
-      if (data && !data.error) {
-        localStorage.setItem(key, JSON.stringify(data));
-      }
-    } catch (err) {}
-  }
-}
+  
+  // Try to fetch packages from Supabase
+  const { data: packages, error } = await supabase
+    .from('rta_packages')
+    .select('*, documents:package_documents(*), workflow_stages(*), comments:review_comments(*), checklist_responses(*)');
 
-// Initialize with seed data if empty
-export function initializeStore(): void {
-  if (!isBrowser()) return;
-  if (!localStorage.getItem(STORAGE_KEYS.PACKAGES)) {
-    setToStorage(STORAGE_KEYS.PACKAGES, generateSeedPackages());
+  if (packages && packages.length > 0) {
+    setToStorage(STORAGE_KEYS.PACKAGES, packages);
+  } else if (!localStorage.getItem(STORAGE_KEYS.PACKAGES)) {
+    // Only seed if DB is empty and nothing in storage
+    const seed = generateSeedPackages();
+    setToStorage(STORAGE_KEYS.PACKAGES, seed);
+    
+    // Optional: Push seed data to Supabase if you want to start with dummy data
+    // (Wait for user to confirm before doing bulk push)
   }
-  if (!localStorage.getItem(STORAGE_KEYS.ACTIVITY_LOG)) {
+
+  // Same for activity log
+  const { data: activity } = await supabase
+    .from('activity_log')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(100);
+
+  if (activity && activity.length > 0) {
+    setToStorage(STORAGE_KEYS.ACTIVITY_LOG, activity);
+  } else if (!localStorage.getItem(STORAGE_KEYS.ACTIVITY_LOG)) {
     setToStorage(STORAGE_KEYS.ACTIVITY_LOG, generateSeedActivity());
   }
 }
@@ -1026,26 +1036,42 @@ export function getStats() {
 
 // ---- Notifications ----
 
-export function getNotifications(userId: string): Notification[] {
-  const all = getFromStorage<Notification[]>(STORAGE_KEYS.NOTIFICATIONS, []);
-  return all.filter((n) => n.userId === userId);
+export async function getNotifications(userId: string): Promise<Notification[]> {
+  const { data, error } = await supabase
+    .from('activity_log')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false });
+    
+  if (error) return [];
+  
+  // Map activity_log entries to Notifications for UI compatibility
+  return (data || []).map(item => ({
+    id: item.id,
+    userId: item.user_id,
+    title: item.action.split('_').map((s: string) => s.charAt(0).toUpperCase() + s.slice(1)).join(' '),
+    message: item.details,
+    packageId: item.package_id,
+    type: 'info',
+    createdAt: item.created_at,
+    isRead: false
+  }));
 }
 
-export function addNotification(
+export async function addNotification(
   data: Omit<Notification, 'id' | 'createdAt' | 'isRead'>
-): void {
-  const all = getFromStorage<Notification[]>(STORAGE_KEYS.NOTIFICATIONS, []);
-  const newNotif: Notification = {
-    ...data,
-    id: `NOT-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
-    createdAt: new Date().toISOString(),
-    isRead: false,
-  };
-  all.unshift(newNotif);
-  setToStorage(STORAGE_KEYS.NOTIFICATIONS, all.slice(0, 50)); // Keep last 50
+): Promise<void> {
+  // We'll use activity_log table for notifications to keep it synced
+  await supabase.from('activity_log').insert([{
+    package_id: data.packageId,
+    user_id: data.userId,
+    action: 'notification',
+    details: data.message
+  }]);
 }
 
 export function markNotificationAsRead(id: string): void {
+  // Currently local-only as per MVP needs, but you can add Supabase sync here too
   const all = getFromStorage<Notification[]>(STORAGE_KEYS.NOTIFICATIONS, []);
   const index = all.findIndex((n) => n.id === id);
   if (index !== -1) {

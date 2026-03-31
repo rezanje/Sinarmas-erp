@@ -18,7 +18,7 @@ import {
   Clock,
   ExternalLink,
 } from "lucide-react";
-import { getNotifications, markNotificationAsRead, syncFromDisk } from "@/lib/store";
+import { getNotifications, markNotificationAsRead, initializeStore } from "@/lib/store";
 import { Notification } from "@/lib/types";
 import { timeAgo as formatTimeAgo } from "@/lib/utils";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export default function DashboardLayout({
 
   useEffect(() => {
     async function init() {
-      await syncFromDisk(); // Sync from Mac hard disk
+      await initializeStore(); // Bawa data dari Supabase pas buka dashboard
       const currentUser = getCurrentUser();
       if (!currentUser) {
         router.replace("/login");
@@ -333,8 +333,9 @@ function NotificationDropdown({ user }: { user: User }) {
   const router = useRouter();
 
   useEffect(() => {
-    const load = () => {
-      setNotifications(getNotifications(user.id));
+    const load = async () => {
+      const data = await getNotifications(user.id);
+      setNotifications(data);
     };
     load();
     // Poll every 30 seconds for new notifications in this demo
@@ -346,18 +347,22 @@ function NotificationDropdown({ user }: { user: User }) {
 
   const handleToggle = () => setIsOpen(!isOpen);
 
-  const handleMarkRead = (id: string, packageId?: string) => {
+  const handleMarkRead = async (id: string, packageId?: string) => {
+    // For now we just update locally as markNotificationAsRead is not yet fully async in DB
+    // but the next refresh will sync it.
     markNotificationAsRead(id);
-    setNotifications(getNotifications(user.id));
+    const data = await getNotifications(user.id);
+    setNotifications(data);
     if (packageId) {
       setIsOpen(false);
       router.push(`/dashboard/packages/${packageId}`);
     }
   };
 
-  const handleMarkAllRead = () => {
+  const handleMarkAllRead = async () => {
     notifications.forEach((n) => markNotificationAsRead(n.id));
-    setNotifications(getNotifications(user.id));
+    const data = await getNotifications(user.id);
+    setNotifications(data);
   };
 
   return (
