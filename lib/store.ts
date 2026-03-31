@@ -800,10 +800,20 @@ export async function advanceWorkflow(packageId: string): Promise<RTAPackage | u
   packages[index] = updatedPkg;
   setToStorage(STORAGE_KEYS.PACKAGES, packages);
 
+  // PUSH KE CLOUD: Simpan status paket terbaru ke Supabase
+  await supabase
+    .from('rta_packages')
+    .update({ 
+      status: updatedPkg.status, 
+      workflow_stages: updatedPkg.workflowStages,
+      updated_at: updatedPkg.updatedAt 
+    })
+    .eq('id', updatedPkg.id);
+
   // Trigger Notification for the next role
   const nextStageObj = updatedPkg.workflowStages.find(s => s.status === 'active');
   if (nextStageObj) {
-    // Notify all users with that role (except the one who just advanced it)
+    // Notify all users with that role
     const allUsers = getUsers();
     const targetUsers = allUsers.filter((u: User) => u.role === nextStageObj.assignedRole);
     
@@ -821,7 +831,7 @@ export async function advanceWorkflow(packageId: string): Promise<RTAPackage | u
   return updatedPkg;
 }
 
-export function rejectWorkflow(packageId: string): RTAPackage | undefined {
+export async function rejectWorkflow(packageId: string): Promise<RTAPackage | undefined> {
   const packages = getPackages();
   const pkg = packages.find((p) => p.id === packageId);
   if (!pkg) return undefined;
@@ -855,6 +865,16 @@ export function rejectWorkflow(packageId: string): RTAPackage | undefined {
   const index = packages.findIndex((p) => p.id === packageId);
   packages[index] = updatedPkg;
   setToStorage(STORAGE_KEYS.PACKAGES, packages);
+
+  // PUSH KE CLOUD: Simpan hasil reject ke Supabase
+  await supabase
+    .from('rta_packages')
+    .update({ 
+      status: updatedPkg.status, 
+      workflow_stages: updatedPkg.workflowStages,
+      updated_at: updatedPkg.updatedAt 
+    })
+    .eq('id', updatedPkg.id);
 
   return updatedPkg;
 }
@@ -1075,25 +1095,50 @@ export function getStats() {
 // ---- Notifications ----
 
 export async function getNotifications(userId: string): Promise<Notification[]> {
-  const { data, error } = await supabase
+  const user = DEMO_USERS.find(u => u.id === userId);
+  if (!user) return [];
+
+  // 1. Ambil alerts/notifikasi manual dari activity_log
+  const { data: activityLogs, error: logError } = await supabase
     .from('activity_log')
     .select('*')
     .eq('user_id', userId)
     .order('created_at', { ascending: false });
     
-  if (error) return [];
+  if (logError) console.error("Error fetching logs:", logError);
   
-  // Map activity_log entries to Notifications for UI compatibility
-  return (data || []).map(item => ({
+  // 2. TUGAS PENDING: Cek paket-paket yang lagi butuh approval user ini
+  const packages = getPackages();
+  const pendingTasks = packages.filter(p => {
+    const activeStage = p.workflowStages.find(s => s.status === 'active');
+    return activeStage && (activeStage.assignedRole === user.role || user.role === 'dept_head');
+  }).map(p => {
+    const activeStage = p.workflowStages.find(s => s.status === 'active')!;
+    return {
+      id: `TASK-${p.id}`,
+      userId: user.id,
+      title: '🔴 Butuh Approval!',
+      message: `${p.packageId}: Menunggu tinjauan ${activeStage.label}`,
+      packageId: p.id,
+      type: 'warning' as const,
+      createdAt: activeStage.startedAt || p.updatedAt,
+      isRead: false
+    };
+  });
+
+  const alerts = (activityLogs || []).map(item => ({
     id: item.id,
     userId: item.user_id,
-    title: item.action.split('_').map((s: string) => s.charAt(0).toUpperCase() + s.slice(1)).join(' '),
+    title: '🔔 Notifikasi',
     message: item.details,
     packageId: item.package_id,
-    type: 'info',
+    type: 'info' as const,
     createdAt: item.created_at,
     isRead: false
   }));
+
+  // Gabungin: Tugas di paling atas, baru alerts nyusul
+  return [...pendingTasks, ...alerts];
 }
 
 export async function addNotification(

@@ -103,9 +103,9 @@ export default function PackageDetailPage() {
     }
   };
 
-  const handleReject = () => {
+  const handleReject = async () => {
     if (!confirm("Apakah anda yakin ingin me-reject paket ini dan mengembalikannya ke Konsultan?")) return;
-    const result = rejectWorkflow(pkg.id);
+    const result = await rejectWorkflow(pkg.id);
     if (result) {
       addActivity({
         packageId: pkg.id,
