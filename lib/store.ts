@@ -744,7 +744,7 @@ export function createPackage(
   return newPackage;
 }
 
-export function advanceWorkflow(packageId: string): RTAPackage | undefined {
+export async function advanceWorkflow(packageId: string): Promise<RTAPackage | undefined> {
   const packages = getPackages();
   const pkg = packages.find((p) => p.id === packageId);
   if (!pkg) return undefined;
@@ -807,15 +807,15 @@ export function advanceWorkflow(packageId: string): RTAPackage | undefined {
     const allUsers = getUsers();
     const targetUsers = allUsers.filter((u: User) => u.role === nextStageObj.assignedRole);
     
-    targetUsers.forEach((u: User) => {
-      addNotification({
+    for (const u of targetUsers) {
+      await addNotification({
         userId: u.id,
         title: 'Draft Kedatangan Baru',
         message: `Paket ${updatedPkg.packageId} menunggu tinjauan: ${nextStageObj.label}`,
         packageId: packageId,
         type: 'info',
       });
-    });
+    }
   }
 
   return updatedPkg;
@@ -861,10 +861,10 @@ export function rejectWorkflow(packageId: string): RTAPackage | undefined {
 
 // ---- Documents ----
 
-export function addDocument(
+export async function addDocument(
   packageId: string,
   doc: Omit<PackageDocument, 'id' | 'uploadedAt'>
-): PackageDocument {
+): Promise<PackageDocument> {
   const packages = getPackages();
   const pkgIndex = packages.findIndex((p) => p.id === packageId);
   if (pkgIndex === -1) throw new Error('Package not found');
@@ -884,15 +884,15 @@ export function addDocument(
   if (doc.type === 'specification' || doc.type === 'drawing' || doc.type === 'boq') {
     const allUsers = getUsers();
     const tdPics = allUsers.filter((u: User) => u.role === 'td_pic');
-    tdPics.forEach((u: User) => {
-      addNotification({
+    for (const u of tdPics) {
+      await addNotification({
         userId: u.id,
         title: 'Dokumen Baru Diupload',
         message: `Konsultan telah mengupload ${doc.name} untuk paket ${pkg.packageId}`,
         packageId: packageId,
         type: 'info',
       });
-    });
+    }
   }
 
   return newDoc;

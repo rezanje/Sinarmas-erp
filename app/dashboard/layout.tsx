@@ -19,6 +19,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { getNotifications, markNotificationAsRead, initializeStore } from "@/lib/store";
+import { supabase } from "@/lib/supabase";
 import { Notification } from "@/lib/types";
 import { timeAgo as formatTimeAgo } from "@/lib/utils";
 import Link from "next/link";
@@ -339,9 +340,29 @@ function NotificationDropdown({ user }: { user: User }) {
       setNotifications(data);
     };
     load();
-    // Poll every 30 seconds for new notifications in this demo
-    const interval = setInterval(load, 30000);
-    return () => clearInterval(interval);
+
+    // REAL-TIME SYNC: Dengerin kalau ada notifikasi baru masuk ke database
+    const channel = supabase
+      .channel("changes")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "activity_log",
+          filter: `user_id=eq.${user.id}`, // Cuma dengerin notif buat saya
+        },
+        async (payload) => {
+          // Begitu ada data baru di DB, langsung update list notifikasi
+          const data = await getNotifications(user.id);
+          setNotifications(data);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [user.id]);
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;

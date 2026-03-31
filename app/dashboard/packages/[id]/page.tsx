@@ -88,8 +88,8 @@ export default function PackageDetailPage() {
     return true;
   })();
 
-  const handleAdvance = () => {
-    const result = advanceWorkflow(pkg.id);
+  const handleAdvance = async () => {
+    const result = await advanceWorkflow(pkg.id);
     if (result) {
       addActivity({
         packageId: pkg.id,
@@ -1347,7 +1347,7 @@ function DocumentsTab({
       if (data.success) {
         const type = file.name.toLowerCase().endsWith(".xlsx") || file.name.toLowerCase().endsWith(".xls") ? "boq" : "specification";
         
-        addDocument(pkg.id, {
+        await addDocument(pkg.id, {
           name: file.name,
           type: type,
           version: pkg.currentVersion,
